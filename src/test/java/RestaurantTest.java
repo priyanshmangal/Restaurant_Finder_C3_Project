@@ -30,9 +30,13 @@ class RestaurantTest {
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
-        LocalTime currentTime = LocalTime.parse("11:30:00");
+        LocalTime openingTime = LocalTime.now().minusHours(1);
+        LocalTime closingTime = LocalTime.now().plusHours(1);
+        restaurant = new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
         Boolean restaurantStatus = restaurant.isRestaurantOpen();
-        System.out.println(restaurantStatus);
+        assertTrue(restaurantStatus);
     }
 
     @Test
