@@ -6,8 +6,13 @@ public class RestaurantService {
     private static List<Restaurant> restaurants = new ArrayList<>();
 
     public Restaurant findRestaurantByName(String restaurantName){
+
+        for(int i = 0; i< restaurants.size(); i ++){
+            if(restaurants.get(i).getName() ==  restaurantName){
+                return restaurants.get(i);
+            }
+        }
         return null;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
 
