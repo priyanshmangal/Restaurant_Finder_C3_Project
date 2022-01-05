@@ -6,10 +6,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.time.LocalTime;
-
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 class RestaurantTest {
@@ -61,4 +63,29 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>Order Total<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void get_order_total_should_return_zero_if_nothing_selected(){
+        int order_total = restaurant.getOrderTotal(null);
+        assertEquals(order_total,0);
+    }
+
+    @Test
+    public void get_order_total_should_return_zero_if_order_item_list_empty(){
+        int order_total = restaurant.getOrderTotal(Collections.<String>emptyList());
+        assertEquals(order_total,0);
+    }
+
+    @Test
+    public void get_order_total_should_return_total_if_order_items_are_selected(){
+        List<String> order_list = new ArrayList<String>();
+        order_list.add("Sweet corn soup");
+        order_list.add("Vegetable lasagne");
+        int order_total = restaurant.getOrderTotal(order_list);
+        assertEquals(order_total,388);
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<Order Total>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
